@@ -1,9 +1,10 @@
 import { useAuth } from "../context/useAuth";
 
 function TeamMembersProtected() {
-  const { user } = useAuth();
+  const { state } = useAuth();
+  const { user, isAuthenticated } = state;
 
-  if (!user) return <p>Please log in to view team members.</p>;
+  if (!isAuthenticated) return <p>Please log in to view team members.</p>;
 
   return (
     <div>

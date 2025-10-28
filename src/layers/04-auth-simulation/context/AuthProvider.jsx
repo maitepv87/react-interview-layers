@@ -1,17 +1,12 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import { AuthContext } from "./AuthContext";
-import { login, logout } from "./authActions";
+import { authReducer, initialState } from "./authReducer";
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-
-  const handleLogin = () => login(setUser);
-  const handleLogout = () => logout(setUser);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   return (
-    <AuthContext.Provider
-      value={{ user, login: handleLogin, logout: handleLogout }}
-    >
+    <AuthContext.Provider value={{ state, dispatch }}>
       {children}
     </AuthContext.Provider>
   );
