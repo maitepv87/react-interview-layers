@@ -9,6 +9,9 @@ import { AuthProvider } from "./layers/04-auth-simulation/context/AuthProvider";
 import LoginPanel from "./layers/04-auth-simulation/components/LoginPanel";
 import TeamMembersProtected from "./layers/04-auth-simulation/components/TeamMembersProtected";
 
+import { ValidationProvider } from "./layers/05-validation-feedback/context/ValidationProvider";
+import ContactForm from "./layers/05-validation-feedback/components/ContactForm";
+
 function App() {
   const [view, setView] = useState("basic");
 
@@ -21,6 +24,9 @@ function App() {
         <button onClick={() => setView("hook")}>02 – Custom Hook</button>
         <button onClick={() => setView("context")}>03 – Context</button>
         <button onClick={() => setView("auth")}>04 – Auth</button>
+        <button onClick={() => setView("validation")}>
+          05 – Validation Feedback
+        </button>
       </nav>
 
       {view === "basic" && <TeamMembersBasic />}
@@ -35,6 +41,11 @@ function App() {
           <LoginPanel />
           <TeamMembersProtected />
         </AuthProvider>
+      )}
+      {view === "validation" && (
+        <ValidationProvider>
+          <ContactForm />
+        </ValidationProvider>
       )}
     </div>
   );
