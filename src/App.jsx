@@ -5,6 +5,10 @@ import TeamMembersHooked from "./layers/02-custom-hook/TeamMembersHooked";
 import { TeamMembersProvider } from "./layers/03-context-integration/context/useTeamMembersContext";
 import TeamMembersWithContext from "./layers/03-context-integration/TeamMembersWithContext";
 
+import { AuthProvider } from "./layers/04-auth-simulation/context/AuthProvider";
+import LoginPanel from "./layers/04-auth-simulation/components/LoginPanel";
+import TeamMembersProtected from "./layers/04-auth-simulation/components/TeamMembersProtected";
+
 function App() {
   const [view, setView] = useState("basic");
 
@@ -16,6 +20,7 @@ function App() {
         <button onClick={() => setView("basic")}>01 – Basic Fetch</button>
         <button onClick={() => setView("hook")}>02 – Custom Hook</button>
         <button onClick={() => setView("context")}>03 – Context</button>
+        <button onClick={() => setView("auth")}>04 – Auth</button>
       </nav>
 
       {view === "basic" && <TeamMembersBasic />}
@@ -24,6 +29,12 @@ function App() {
         <TeamMembersProvider>
           <TeamMembersWithContext />
         </TeamMembersProvider>
+      )}
+      {view === "auth" && (
+        <AuthProvider>
+          <LoginPanel />
+          <TeamMembersProtected />
+        </AuthProvider>
       )}
     </div>
   );
