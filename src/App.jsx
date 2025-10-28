@@ -2,6 +2,9 @@ import { useState } from "react";
 import TeamMembersBasic from "./layers/01-basic-fetch/TeamMembersBasic";
 import TeamMembersHooked from "./layers/02-custom-hook/TeamMembersHooked";
 
+import { TeamMembersProvider } from "./layers/03-context-integration/context/useTeamMembersContext";
+import TeamMembersWithContext from "./layers/03-context-integration/TeamMembersWithContext";
+
 function App() {
   const [view, setView] = useState("basic");
 
@@ -12,12 +15,16 @@ function App() {
       <nav style={{ marginBottom: "1rem", display: "flex", gap: "0.5rem" }}>
         <button onClick={() => setView("basic")}>01 – Basic Fetch</button>
         <button onClick={() => setView("hook")}>02 – Custom Hook</button>
-        {/*<button onClick={() => setView('context')}>03 – Context</button> */}
+        <button onClick={() => setView("context")}>03 – Context</button>
       </nav>
 
       {view === "basic" && <TeamMembersBasic />}
       {view === "hook" && <TeamMembersHooked />}
-      {/*{view === 'context' && <AuthContextExample />} */}
+      {view === "context" && (
+        <TeamMembersProvider>
+          <TeamMembersWithContext />
+        </TeamMembersProvider>
+      )}
     </div>
   );
 }
