@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function TeamMembersList() {
+function TeamMembersBasic() {
   const [members, setMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
@@ -21,8 +21,8 @@ function TeamMembersList() {
 
         const data = await response.json();
         setMembers(data);
-      } catch (err) {
-        setFetchError(err.message || "Unexpected error fetching data");
+      } catch (error) {
+        setFetchError(error.message || "Unexpected error fetching data");
       } finally {
         setIsLoading(false);
       }
@@ -37,7 +37,7 @@ function TeamMembersList() {
 
   return (
     <div>
-      <h2>Team Members</h2>
+      <h2>Team Members - Basic Fetch</h2>
       <ul>
         {members.map((member) => (
           <li key={member.id}>
@@ -49,4 +49,4 @@ function TeamMembersList() {
   );
 }
 
-export default TeamMembersList;
+export default TeamMembersBasic;
