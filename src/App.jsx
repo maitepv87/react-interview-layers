@@ -12,6 +12,8 @@ import TeamMembersProtected from "./layers/04-auth-simulation/components/TeamMem
 import { ValidationProvider } from "./layers/05-validation-feedback/context/ValidationProvider";
 import ContactForm from "./layers/05-validation-feedback/components/ContactForm";
 
+import ExtensionsShowcase from "./layers/06-extensions/ExtensionsShowcase";
+
 function App() {
   const [view, setView] = useState("basic");
 
@@ -27,6 +29,7 @@ function App() {
         <button onClick={() => setView("validation")}>
           05 – Validation Feedback
         </button>
+        <button onClick={() => setView("extensions")}>06 – Extensions</button>
       </nav>
 
       {view === "basic" && <TeamMembersBasic />}
@@ -47,6 +50,7 @@ function App() {
           <ContactForm />
         </ValidationProvider>
       )}
+      {view === "extensions" && <ExtensionsShowcase />}
     </div>
   );
 }
